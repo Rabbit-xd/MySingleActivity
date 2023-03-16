@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MySingleActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subreddit">subreddit</string>
+    <string name="posted_by">posted_by</string>
+    <string name="btnJoin">Join</string>
+    <string name="share_title">Share with</string>
+    <string name="share">Share</string>
+    <string name="save_bookmarks">Save</string>
+    <string name="share_subject">Share</string>
+</resources>
