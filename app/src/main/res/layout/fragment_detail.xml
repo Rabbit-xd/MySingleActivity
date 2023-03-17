@@ -8,13 +8,6 @@
     android:id="@+id/detailFragment"
     tools:context=".ui.DetailFragment">
 
-  <!--  <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        android:id="@+id/toolbar"
-        style="@style/Widget.AppCompat.Toolbar"/> -->
-
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -102,21 +95,7 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleFrag"
-                app:layout_constraintVertical_bias="0.12"
-                />
-
-       <!-- <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="40dp"
-            android:transitionName="@string/share_subject"
-            android:src="@drawable/baseline_share_24"
-            android:outlineSpotShadowColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.856"
-            app:layout_constraintStart_toEndOf="@+id/tvAuthorFrag"
-            app:layout_constraintTop_toTopOf="parent" /> -->
+                app:layout_constraintVertical_bias="0.12"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

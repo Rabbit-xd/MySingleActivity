@@ -3,17 +3,14 @@ package com.example.mysingleactivity.repository
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mysingleactivity.models.Post
-import com.example.mysingleactivity.net.ApiClient
 import com.example.mysingleactivity.net.ApiService
 
 class RedditDataSource(
     private var api: ApiService
     ): PagingSource<String,Post>() {
-    //api = ApiClient.getClient().create(ApiService::class.java)
     override fun getRefreshKey(state: PagingState<String, Post>): String? {
         return null
     }
-
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Post> {
         try{
             val limit = params.loadSize

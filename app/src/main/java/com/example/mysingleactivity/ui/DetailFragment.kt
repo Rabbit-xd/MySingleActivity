@@ -1,6 +1,6 @@
 package com.example.mysingleactivity.ui
 
-//import android.widget.ShareActionProvider
+
 import android.Manifest
 import android.app.AlertDialog
 import android.app.DownloadManager
@@ -18,12 +18,12 @@ import androidx.appcompat.widget.ShareActionProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.mysingleactivity.R
 import com.example.mysingleactivity.databinding.FragmentDetailBinding
-import com.example.mysingleactivity.viewmodel.MainViewModel
+import com.example.mysingleactivity.viewmodel.RedditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -34,8 +34,7 @@ import kotlinx.coroutines.launch
 class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     private val args: DetailFragmentArgs by navArgs()
-    lateinit var viewModel: MainViewModel
-
+    private val viewModel: RedditViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -43,9 +42,6 @@ class DetailFragment : Fragment() {
 
         }
     }
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,12 +49,8 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val activity = requireActivity()
         if (activity is AppCompatActivity) {
@@ -68,7 +60,6 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.bind(view)
         val thumbnailView = binding.imgFrag
         val post = args.post
-
 
         binding.tvSubredditF.text = post?.subredditNamePrefixed
         binding.tvTitleFrag.text = post?.title
@@ -96,8 +87,7 @@ class DetailFragment : Fragment() {
                             request.setTitle("My File")
                             request.setDescription("Downloading")
                             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "myfile.jpg") // замените на нужный путь и имя файла
-
+                            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "myfile.jpg")
                             val downloadId = downloadManager.enqueue(request)
 
                         }
@@ -126,8 +116,6 @@ class DetailFragment : Fragment() {
         intent.putExtra(Intent.EXTRA_TEXT,post.title + "" + post.url)
         shareActionProvider.setShareIntent(intent)
      }
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val post = args.post
         when(item.itemId){
@@ -141,14 +129,9 @@ class DetailFragment : Fragment() {
                 startActivity(shareIntent)
                 return true
             }
-
             else -> return super.onOptionsItemSelected(item)
         }
-
-
     }
-
-
     private fun checkPermission():Boolean {
         return ContextCompat.checkSelfPermission(
             requireContext(),
@@ -176,8 +159,6 @@ class DetailFragment : Fragment() {
                 }
         }
     }
-
-
     companion object {
         @JvmStatic
         fun newInstance() = DetailFragment
