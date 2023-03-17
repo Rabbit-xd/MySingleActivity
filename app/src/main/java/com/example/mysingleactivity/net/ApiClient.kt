@@ -13,7 +13,7 @@ class ApiClient {
         private val loggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
-        private val okHttpClient = OkHttpClient().newBuilder()
+        val okHttpClient = OkHttpClient().newBuilder()
             .connectTimeout(2, TimeUnit.MINUTES)
             .readTimeout(2, TimeUnit.MINUTES)
             .writeTimeout(2, TimeUnit.MINUTES)
